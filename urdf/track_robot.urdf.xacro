@@ -1,74 +1,40 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="track_robot" >
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="track_robot">
 
-  <xacro:include filename="$(find track_robot_description)/urdf/common.urdf.xacro" />
-  <xacro:include filename="$(find track_robot_description)/urdf/materials.urdf.xacro" />
+<!--common-->
+<xacro:include filename="$(find track_robot_description)/urdf/common.urdf.xacro" />
+<xacro:include filename="$(find track_robot_description)/urdf/materials.urdf.xacro" />
 
-  <xacro:macro name="wheel" params="name parent *origin">
+<xacro:include filename="$(find track_robot_description)/urdf/track.urdf.xacro" />
 
-    <joint name="${name}_joint" type="continuous" >
-      <parent link="${parent}" />
-      <child link="${name}" />
-      <xacro:insert_block name="origin" />
-      <axis xyz="0 0 1" rpy="0 0 0" />
-      <limit effort="30" velocity="0.2" />
-    </joint>
+<!--<link name="map" >
+<origin xyz="0 0 0" rpy="0 0 0" />
+</link>
 
-    <link name="${name}">
-      <visual>
-        <!-- <origin xyz="0 0 -${M_PI/2}" rpy="0 ${M_PI/2} 0" /> -->
-        <geometry>
-          <cylinder radius="0.1" length="0.1" />
-        </geometry>
-        <material name="LightGrey2"/>
-      </visual>
-      <collision >
-        <!-- <origin xyz="0 0 -${M_PI/2}" rpy="0 ${M_PI/2} 0" /> -->
-        <geometry>
-          <cylinder radius="0.11" length="0.11" />
-        </geometry>
-      </collision>
-    </link>
+<joint name="$map_base_joint" type="fixed" >
+<parent link="map" />
+<child link="base_link" />
+<origin xyz="0 0 ${0.1/2}" rpy="0 0 0" />
+</joint>-->
 
-    <transmission name="${name}_trans" type="SimpleTransmission">
-			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${name}_motor">
-				<mechanicalReduction>1</mechanicalReduction>
-			</actuator>
-			<joint name="${name}_joint">
-				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-			</joint>
-		</transmission>
+<xacro:property name="box_length" value="0.4"/>
 
-  </xacro:macro>
+<link name="base_link" >
+<origin xyz="0 0 ${0.1/2 + 0.1}" rpy="0 0 0" />
+<visual>
+<geometry>
+<box size="${box_length} ${box_length} 0.1" />
+</geometry>
+<material name="Black"/>
+</visual>
+</link>
 
-  <!-- <link name="map" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </link>
+<xacro:track name="left_track" parent="base_link" length="${box_length}" spin="-${M_PI/2}" >
+<origin xyz="0 0.2 0" rpy="0 ${M_PI/2} 0" />
+</xacro:track>
 
-  <joint name="$map_base_joint" type="floating" >
-    <parent link="map" />
-    <child link="base_link" />
-    <origin xyz="0 0 ${0.1/2}" rpy="0 0 0" />
-  </joint> -->
-
-  <link name="base_link" >
-    <origin xyz="0 0 ${0.1/2 + 0.1}" rpy="0 0 0" />
-    <visual>
-      <geometry>
-        <box size="0.4 0.4 0.1" />
-      </geometry>
-      <material name="Black"/>
-    </visual>
-  </link>
-
-
-	<xacro:wheel name="left_wheel" parent="base_link" >
-		<origin xyz="0 0.2 0" rpy="-${M_PI/2} 0 0" />
-	</xacro:wheel>
-
-  <xacro:wheel name="right_wheel" parent="base_link" >
-		<origin xyz="0 -0.2 0" rpy="-${M_PI/2} 0 0" />
-	</xacro:wheel>
+<xacro:track name="right_track" parent="base_link" length="${box_length}" spin="${M_PI/2}" >
+<origin xyz="0 -0.2 0" rpy="${M_PI} ${M_PI/2} 0" />
+</xacro:track>
 
 </robot>

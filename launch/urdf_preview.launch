@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find track_robot_description)/launch/robot.launch" />
+  
+  <include file="$(find track_robot_description)/launch/display.launch" />
+  
+  <include file="$(find track_robot_description)/launch/state_publisher.launch" />
+
+</launch>

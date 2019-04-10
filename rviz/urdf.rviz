@@ -3,7 +3,8 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Global Options1
       Splitter Ratio: 0.5
     Tree Height: 429
   - Class: rviz/Selection
@@ -61,12 +62,32 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel:
+        left_track:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        left_track_back_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_track_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_back_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_track_front_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -84,11 +105,17 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        left_wheel:
+        left_track:
           Value: true
-        odom:
+        left_track_back_wheel:
           Value: true
-        right_wheel:
+        left_track_front_wheel:
+          Value: true
+        right_track:
+          Value: true
+        right_track_back_wheel:
+          Value: true
+        right_track_front_wheel:
           Value: true
       Marker Scale: 0.5
       Name: TF
@@ -96,11 +123,16 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_link:
-            left_wheel:
+        base_link:
+          left_track:
+            left_track_back_wheel:
               {}
-            right_wheel:
+            left_track_front_wheel:
+              {}
+          right_track:
+            right_track_back_wheel:
+              {}
+            right_track_front_wheel:
               {}
       Update Interval: 0
       Value: true
@@ -142,7 +174,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -163,25 +195,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 12.8302364
+      Distance: 1.70225024
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.118172973
+        Y: -0.00513896439
+        Z: -0.100519672
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.584796786
+      Pitch: 0.664797127
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.08858299
+      Yaw: 2.18358517
     Saved: ~
 Window Geometry:
   Displays:

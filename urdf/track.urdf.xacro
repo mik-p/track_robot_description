@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--<xacro:include filename="$(find track_robot_description)/urdf/common.urdf.xacro" />-->
+<!--<xacro:include filename="$(find track_robot_description)/urdf/materials.urdf.xacro" />-->
+
+<xacro:include filename="$(find track_robot_description)/urdf/wheel.urdf.xacro" />
+
+<xacro:macro name="track" params="name parent *origin length spin">
+
+<joint name="${name}_joint" type="fixed" >
+<parent link="${parent}" />
+<child link="${name}" />
+<xacro:insert_block name="origin" />
+<!--<axis xyz="0 0 1" rpy="0 0 0" />-->
+<!--<limit effort="30" velocity="0.2" />-->
+</joint>
+
+<xacro:property name="square_dim" value="0.01"/>
+
+<link name="${name}" >
+<!--<origin xyz="0 0 0" rpy="0 0 0" />-->
+<visual>
+<geometry>
+<box size="${square_dim} ${square_dim} ${length}" />
+</geometry>
+<material name="Red"/>
+</visual>
+</link>
+
+<xacro:wheel name="${name}_back_wheel" parent="${name}" >
+<origin xyz="0 0.055 -${length/2}" rpy="${spin} 0 0" />
+</xacro:wheel>
+
+<xacro:wheel name="${name}_front_wheel" parent="${name}" >
+<origin xyz="0 0.055 ${length/2}" rpy="${spin} 0 0" />
+</xacro:wheel>
+
+</xacro:macro>
+
+</robot>
